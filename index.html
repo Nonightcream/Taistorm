@@ -535,7 +535,7 @@ html.mobile-game.landscape-blocked #orientationGuard{
 <div class="setting-row"><label id="sfxVolumeLabel">音效</label><div class="setting-volume"><input id="sfxVolumeSlider" type="range" min="0" max="100" value="100"><span id="sfxVolumeValue">100%</span></div></div>
   <div class="setting-row"><label id="muteLabel">靜音</label><div class="setting-mute"><input id="muteToggle" type="checkbox"><span id="muteText">關閉</span></div></div>
   <div class="setting-row"><label id="languageLabel">語言</label><div class="lang-buttons"><button data-lang="zh" class="active">中文</button><button data-lang="ja">日本語</button><button data-lang="en">English</button></div></div>
-  <div class="creator"><span id="creatorLabel">製作者</span> by 無夜霜　<a href="https://x.com/nonightcream" target="_blank" rel="noopener noreferrer">X ↗</a></div><div class="version-info">Taistorm v1.0.0</div>
+  <div class="creator"><span id="creatorLabel">製作者</span> by 無夜霜　<a href="https://x.com/nonightcream" target="_blank" rel="noopener noreferrer">X ↗</a></div><div class="version-info">Taistorm v1.0.1</div>
  </div>
 </div>
 <div id="overlay"><div class="card start-card"><h2>台灣氣象戰</h2><p class="start-copy"><span class="lead">你就是颱風。</span><br><span class="sea">海上發展</span>、<span class="land">登陸刷分</span>；<br>但<span class="tw">台灣</span>會離開原本的位置<span class="chase">追著你跑</span>。<br><span class="death">⚠ 碰到台灣立即死亡。</span></p><button id="start" class="primary-btn">開始逃跑</button></div></div></div>
@@ -937,7 +937,8 @@ function shareResult(r){
  const text=`🌪️ ${gameTitle}
 ${scoreLabel}: ${Number(r.score||0).toLocaleString()}
 ${T('存活時間：')}${formatTime(r.elapsed||0)}${quote?`\n${quote}`:''}
-#Taistorm`;
+#Taistorm
+https://nonightcream.github.io/Taistorm/`;
  const xUrl='https://x.com/intent/post?text='+encodeURIComponent(text);
  window.open(xUrl,'_blank','noopener,noreferrer');
 }
