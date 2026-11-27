@@ -1524,8 +1524,13 @@ html.mobile-game.landscape-blocked #orientationGuard{
 @keyframes v20ShieldPulse{from{opacity:.55}to{opacity:1}}
 #game.mode-dual .v20-target:before{content:'';position:absolute;inset:-13px;border:3px dashed #ff5367;border-radius:50%;pointer-events:none;animation:v20TargetPulse .4s ease-in-out infinite alternate}
 @keyframes v20TargetPulse{from{opacity:.35;transform:scale(.93)}to{opacity:1;transform:scale(1.06)}}
+
+/* Dual keyboard control hint: right side of the existing dash status row */
+#game.mode-dual #dualHud2 .dual-controls-row{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-top:9px;padding-top:7px;border-top:1px solid #ffffff38}
+#game.mode-dual #dualHud2 .dual-controls-row .dual-dash-status{margin:0;padding:0;border:0;flex:1;min-width:0}
+#game.mode-dual #dualHud2 #dualMoveHint{font-size:11px;font-weight:700;color:#c8e9dc;white-space:nowrap;text-align:right}
 </style></head><body><div id="game" class="ui-mode"><canvas id="mapCanvas"></canvas>
-<div id="dualBrand">🌪️ 台灣氣象戰 <span>● LIVE</span></div><div id="dualHud2" class="dual-player-panel"><div class="strengthHeader"><span id="dualTitle2">颱風強度</span><span id="dualClass2" class="tc-medium">中颱</span></div><div class="bar"><div id="dualFill2" class="fill"></div></div><div class="row small"><span id="dualStatus2">海上發展中</span><span id="dualPower2">62%</span><span id="dualScore2">0 分</span></div><div id="dualDashStatus" class="dual-dash-status">SPACE DASH READY</div></div><div id="hud"><h1>🌪️ 台灣氣象戰 <span class="live">● LIVE</span></h1><div class="strengthHeader"><span>颱風強度</span><span id="typhoonClass" class="tc-medium">中颱</span></div><div class="bar"><div id="fill" class="fill"></div></div><div class="row small"><span id="status">海上發展中</span><span id="sizeText">62%</span><span id="dualScore1">0 分</span></div><div class="small rules"><span class="seaWord">海洋</span>：恢復　<span class="landWord">陸地</span>：持續加分＋衰弱</div><div class="small"><span class="taiwanWord">台灣</span>：碰到立即死亡</div></div>
+<div id="dualBrand">🌪️ 台灣氣象戰 <span>● LIVE</span></div><div id="dualHud2" class="dual-player-panel"><div class="strengthHeader"><span id="dualTitle2">颱風</span><span id="dualClass2" class="tc-medium">中颱</span></div><div class="bar"><div id="dualFill2" class="fill"></div></div><div class="row small"><span id="dualStatus2">海上發展中</span><span id="dualPower2">62%</span><span id="dualScore2">0 分</span></div><div class="dual-controls-row"><div id="dualDashStatus" class="dual-dash-status">SPACE DASH READY</div><span id="dualMoveHint">WASD 移動</span></div></div><div id="hud"><h1>🌪️ 台灣氣象戰 <span class="live">● LIVE</span></h1><div class="strengthHeader"><span>颱風</span><span id="typhoonClass" class="tc-medium">中颱</span></div><div class="bar"><div id="fill" class="fill"></div></div><div class="row small"><span id="status">海上發展中</span><span id="sizeText">62%</span><span id="dualScore1">0 分</span></div><div class="small rules"><span class="seaWord">海洋</span>：恢復　<span class="landWord">陸地</span>：持續加分＋衰弱</div><div class="small"><span class="taiwanWord">台灣</span>：碰到立即死亡</div></div>
 <canvas id="rainCanvas"></canvas>
 <div id="dualMobileTop" class="dual-mobile-strip"><div class="dual-mobile-newsrow"><span class="dual-news-tag"><span class="dot">●</span><span data-dual-news-label>最新消息</span></span><span id="dualNews1" class="dual-mobile-news">最新消息</span></div><div class="dual-mobile-info"><span class="dual-mobile-name" id="dualMobileName1">颱風1</span><span class="dual-mobile-strength" id="dualMobileScore1">0</span></div><div class="dual-mobile-bar"><div id="dualMobileFill1"></div></div></div><div id="dualMobileSide"><span id="dualMobileTime">00:00.0</span><span id="dualMobileTotal">0</span></div><div id="dualMobileBottom" class="dual-mobile-strip"><div class="dual-mobile-bar"><div id="dualMobileFill2"></div></div><div class="dual-mobile-info"><span class="dual-mobile-name" id="dualMobileName2">颱風2</span><span class="dual-mobile-strength" id="dualMobileScore2">0</span></div><div class="dual-mobile-newsrow"><span class="dual-news-tag"><span class="dot">●</span><span data-dual-news-label>最新消息</span></span><span id="dualNews2" class="dual-mobile-news">最新消息</span></div></div><div id="mobileStatsHud" aria-hidden="true">
   <div class="mstat-row mstat-time"><span class="mstat-label" data-ms-label="time">存活時間</span><b id="mobileTime">00:00.0</b></div>
@@ -1562,7 +1567,7 @@ let currentLang=localStorage.getItem(LANG_KEY)||'zh',settingsOpen=false,settings
 const I18N={
  ja:{
  '請將手機轉回直向':'スマートフォンを縦向きにしてください','《台灣氣象戰》手機版使用直向遊玩':'『台湾気象戦』モバイル版は縦向きでプレイしてください',
- '颱風強度':'台風の強さ','中颱':'中型台風','強颱':'大型台風','輕颱':'小型台風','熱帶低氣壓':'熱帯低気圧',
+ 'WASD 移動':'WASDで移動','颱風':'台風','颱風強度':'台風の強さ','中颱':'中型台風','強颱':'大型台風','輕颱':'小型台風','熱帶低氣壓':'熱帯低気圧',
  '海上發展中':'海上で発達中','登陸刷分中':'上陸・得点中','海洋':'海洋','恢復':'回復','陸地':'陸地','持續加分＋衰弱':'得点＋弱体化','台灣':'台湾','碰到立即死亡':'接触すると即死',
  '存活時間':'生存時間','分數':'スコア','最佳分數':'ベスト','🌪️ 颱風現在位置':'🌪️ 台風の現在地','最新消息':'速報','太平洋':'太平洋','西北太平洋':'北西太平洋','菲律賓海':'フィリピン海','東海':'東シナ海','南海':'南シナ海','孟加拉灣':'ベンガル湾',
  '中國':'中国','日本':'日本','菲律賓':'フィリピン','印度':'インド','孟加拉':'バングラデシュ','緬甸':'ミャンマー','蒙古':'モンゴル','寮國':'ラオス','泰國':'タイ','越南':'ベトナム','柬埔寨':'カンボジア','馬來西亞':'マレーシア','南韓':'韓国','北韓':'北朝鮮','俄羅斯':'ロシア',
@@ -1584,7 +1589,7 @@ const I18N={
  },
  en:{
  '請將手機轉回直向':'Please rotate your phone to portrait mode','《台灣氣象戰》手機版使用直向遊玩':'Taistorm mobile is designed to be played in portrait mode.',
- '颱風強度':'Typhoon Strength','中颱':'Medium','強颱':'Strong','輕颱':'Light','熱帶低氣壓':'Tropical Depression',
+ 'WASD 移動':'WASD Move','颱風':'Typhoon','颱風強度':'Typhoon Strength','中颱':'Medium','強颱':'Strong','輕颱':'Light','熱帶低氣壓':'Tropical Depression',
  '海上發展中':'Developing at sea','登陸刷分中':'Scoring on land','海洋':'Ocean','恢復':'Recover','陸地':'Land','持續加分＋衰弱':'Score + weaken','台灣':'Taiwan','碰到立即死亡':'Touch = instant death',
  '存活時間':'SURVIVAL','分數':'SCORE','最佳分數':'BEST','🌪️ 颱風現在位置':'🌪️ Current location','最新消息':'BREAKING','太平洋':'Pacific Ocean','西北太平洋':'NW Pacific','菲律賓海':'Philippine Sea','東海':'East China Sea','南海':'South China Sea','孟加拉灣':'Bay of Bengal',
  '中國':'China','日本':'Japan','菲律賓':'Philippines','印度':'India','孟加拉':'Bangladesh','緬甸':'Myanmar','蒙古':'Mongolia','寮國':'Laos','泰國':'Thailand','越南':'Vietnam','柬埔寨':'Cambodia','馬來西亞':'Malaysia','南韓':'South Korea','北韓':'North Korea','俄羅斯':'Russia',
@@ -1639,10 +1644,11 @@ function applyLanguage(){
  const hud=document.querySelector('#hud'); if(hud){
   const titleNode=hud.querySelector('h1');
   if(titleNode) titleNode.innerHTML=`🌪️ ${T('台灣氣象戰')} <span class="live">● LIVE</span>`;
-  hud.querySelector('.strengthHeader>span:first-child').textContent=T('颱風強度');updateNameHeaders();
+  hud.querySelector('.strengthHeader>span:first-child').textContent=T('颱風');updateNameHeaders();
   hud.querySelector('.rules').innerHTML=`<span class="seaWord">${T('海洋')}</span>：${T('恢復')}　<span class="landWord">${T('陸地')}</span>：${T('持續加分＋衰弱')}`;
   hud.querySelector('.small:last-child').innerHTML=`<span class="taiwanWord">${T('台灣')}</span>：${T('碰到立即死亡')}`;
  }
+ const dualMoveHint=document.getElementById('dualMoveHint');if(dualMoveHint)dualMoveHint.textContent=T('WASD 移動');
  document.querySelector('.hudLabel').textContent=T('存活時間');
  const mobileTimeLabel=document.querySelector('#mobileStatsHud [data-ms-label="time"]'); if(mobileTimeLabel) mobileTimeLabel.textContent=T('存活時間');
  const mobileScoreLabel=document.querySelector('#mobileStatsHud [data-ms-label="score"]'); if(mobileScoreLabel) mobileScoreLabel.textContent=T('分數');
@@ -1737,7 +1743,7 @@ function historyNamesText(r){
  }
  return safeName(names[0]||'');
 }
-function updateNameHeaders(){const title=T('颱風強度');const a=document.querySelector('#hud .strengthHeader>span:first-child');if(a)a.textContent=stormNames[0]?stormNames[0]+title:title;const b=document.querySelector('#dualTitle2');if(b)b.textContent=stormNames[1]?stormNames[1]+title:title}
+function updateNameHeaders(){const title=T('颱風');const a=document.querySelector('#hud .strengthHeader>span:first-child');if(a)a.textContent=stormNames[0]?stormNames[0]+title:title;const b=document.querySelector('#dualTitle2');if(b)b.textContent=stormNames[1]?stormNames[1]+title:title}
 function syncDualUI(){const dual=isDual();document.getElementById('dualNameLabel2').parentElement.classList.toggle('single-naming',!dual);updateNameHeaders();document.querySelectorAll('[data-mode="dual"]').forEach(b=>{b.classList.toggle('selected',dual);b.setAttribute('aria-pressed',String(dual))});const wash=document.getElementById('modeColorWash');if(wash){wash.style.setProperty('--dual-mode-color',dual?(activeModes.has('speed')?'rgba(118,65,170,.11)':'rgba(33,150,85,.11)'):(activeModes.has('speed')?'rgba(198,38,28,.10)':'rgba(0,0,0,0)'))}}
 function classForPower(p){return p>=70?T('強颱'):p>=40?T('中颱'):p>=15?T('輕颱'):T('熱帶低氣壓')}
 function refreshDualHud(){if(!isDual())return;document.getElementById('dualScore2').textContent=playerScores[1].toLocaleString()+' '+T('分');document.getElementById('dualPower2').textContent=Math.round(power2)+'%';const class2=document.getElementById('dualClass2');class2.textContent=classForPower(power2);class2.className=power2>=70?'tc-strong':power2>=40?'tc-medium':power2>=15?'tc-light':'tc-td';document.getElementById('dualFill2').style.width=power2+'%';document.getElementById('dualFill2').style.backgroundColor=power2>=60?'#e94b4b':power2>=30?'#ffd84d':'#54d46a';document.getElementById('dualMobileFill1').style.width=power+'%';document.getElementById('dualMobileFill2').style.width=power2+'%';document.getElementById('dualMobileFill1').style.backgroundColor=power>=60?'#e94b4b':power>=30?'#ffd84d':'#54d46a';document.getElementById('dualMobileFill2').style.backgroundColor=power2>=60?'#e94b4b':power2>=30?'#ffd84d':'#54d46a';document.getElementById('dualMobileName1').textContent=stormNames[0]||'颱風1';document.getElementById('dualMobileName2').textContent=stormNames[1]||'颱風2';document.getElementById('dualMobileScore1').textContent=playerScores[0].toLocaleString();document.getElementById('dualMobileScore2').textContent=playerScores[1].toLocaleString();document.getElementById('dualMobileTime').textContent=formatTime(elapsed);document.getElementById('dualMobileTotal').textContent=score.toLocaleString();document.getElementById('dualLocationName2').textContent=T(getLocationName(mx2,my2));}
